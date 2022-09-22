@@ -11,6 +11,12 @@ const contenedorProductos = document.getElementById("tarjetaIndex")
 const carritoActualizado  = document.getElementById("carrito")
 const botonVaciarCarrito = document.getElementById("vaciarCarrito")
 const precioTotal = document.getElementById("precioTotal")
+const botonComprar = document.getElementById("botonComprar")
+
+botonComprar.addEventListener(`click`,()=>{
+
+    finalizarCompra()
+})
 
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('carrito')){
@@ -38,7 +44,9 @@ sorrentinos.forEach((producto,prodId)=>{
 
     boton.addEventListener(`click`, ()=>{
         agregarAlCarrito(prodId)
+        alert(`Producto agregado al carrito`)
     })
+    
 })
 
 const agregarAlCarrito = (prodId)=>{
@@ -55,6 +63,7 @@ const agregarAlCarrito = (prodId)=>{
         actualizarCarrito()
 
     }
+    
 
 }
 
@@ -84,3 +93,11 @@ const eliminarDelCarrito = (prodId) => {
     carrito.splice(indice , 1)
     actualizarCarrito()
 }
+
+const finalizarCompra =()=>{
+    
+    carritoActualizado.innerHTML =""
+    const finCompra = `<h1>GRACIAS POR SU COMPRA</h1>`
+    carritoActualizado.innerHTML = finCompra
+}
+
