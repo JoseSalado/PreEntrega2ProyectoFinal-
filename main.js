@@ -44,28 +44,29 @@ sorrentinos.forEach((producto,prodId)=>{
 
     boton.addEventListener(`click`, ()=>{
         agregarAlCarrito(prodId)
-        alert(`Producto agregado al carrito`)
+       
     })
     
 })
 
-const agregarAlCarrito = (prodId)=>{
+//uso de ternarios
+
+const agregarAlCarrito = (prodId) => {
     const indiceEncontrado = carrito.findIndex((producto)=>{
         return producto.id === sorrentinos[prodId].id
-    })
-    if(indiceEncontrado === -1){
-        const agregarProducto = sorrentinos[prodId]
-        agregarProducto.cantidad = 1
-        carrito.push(agregarProducto)
+    });
+    const agregarProducto = sorrentinos[prodId];
+    indiceEncontrado === -1 ? (        
+        agregarProducto.cantidad = 1,
+        carrito.push(agregarProducto), 
         actualizarCarrito()
-    }else{
-        carrito[indiceEncontrado].cantidad +=1
+        
+    ) : (
+        carrito[indiceEncontrado].cantidad = carrito[indiceEncontrado].cantidad + 1,
         actualizarCarrito()
-
-    }
-    
-
-}
+        
+    )
+};
 
 const actualizarCarrito = ()=>{
 
