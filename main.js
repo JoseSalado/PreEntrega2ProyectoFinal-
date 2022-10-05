@@ -30,8 +30,15 @@ botonVaciarCarrito.addEventListener(`click`,()=>{
     actualizarCarrito()
 })
 
-sorrentinos.forEach((producto,prodId)=>{
-    const div = document.createElement(`div`)
+
+//Dibuje los productos con fetch
+
+const dibujarTarjeta = async()=>{
+    const respuesta = await fetch(`/data.json`)
+    const data = await respuesta.json()
+    
+    data.forEach((producto,prodId)=>{
+        const div = document.createElement(`div`)
     div.classList.add(`producto`)
     div.innerHTML = `<div><img class="imgIndex" src="./assets/img/sorrentinosVenta.png" alt=""></div>
     <h4>Sorrentino x12u</h4>
@@ -51,10 +58,9 @@ sorrentinos.forEach((producto,prodId)=>{
             showConfirmButton: false,
             timer: 1500
           })
-       
     })
-    
-})
+    })
+}
 
 //uso de ternarios
 
@@ -109,3 +115,4 @@ const finalizarCompra =()=>{
     carritoActualizado.innerHTML = finCompra
 }
 
+dibujarTarjeta()
